@@ -261,7 +261,7 @@ class ProjectBaseConfig(Configuration):
             "default": {
                 "BACKEND": default,
             },
-            "static": {
+            "staticfiles": {
                 "BACKEND": static,
             }
         }
