@@ -207,12 +207,6 @@ class ProjectBaseConfig(Configuration):
         return f'{self.STATIC_S3_BUCKET_NAME}.s3.amazonaws.com'
 
     @property
-    def STATICFILES_STORAGE(self):
-        if self.STATIC_MODE == 's3':
-            return 'project.storages.StaticStorage'
-        return 'whitenoise.storage.CompressedStaticFilesStorage'
-
-    @property
     def STATIC_URL(self):
         if self.STATIC_MODE == 's3':
             return f'https://{self.STATIC_S3_DOMAIN}/{self.STATIC_S3_PATH}/'
@@ -251,6 +245,25 @@ class ProjectBaseConfig(Configuration):
     def HONEYBADGER(self):
         return {
             'API_KEY': self.HONEYBADGER_API_KEY
+        }
+
+    def STORAGES(self):
+        if self.MEDIA_MODE == 'local':
+            default = 'django.core.files.storage.FileSystemStorage'
+        else:
+            default = 'project.storages.PublicMediaStorage'
+
+        if self.STATIC_MODE == 's3':
+            static = 'project.storages.StaticStorage'
+        else:
+            static = 'whitenoise.storage.CompressedStaticFilesStorage'
+        return {
+            "default": {
+                "BACKEND": default,
+            },
+            "static": {
+                "BACKEND": static,
+            }
         }
 
     # Celery Settings
