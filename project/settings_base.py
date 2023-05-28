@@ -228,13 +228,6 @@ class ProjectBaseConfig(Configuration):
     MEDIA_HOST = values.Value('')
     MEDIA_ROOT = values.Value('media')
 
-    #
-    @property
-    def DEFAULT_FILE_STORAGE(self):
-        if self.MEDIA_MODE == 'local':
-            return 'django.core.files.storage.FileSystemStorage'
-        return 'project.storages.PublicMediaStorage'
-
     @property
     def MEDIA_S3_DOMAIN(self):
         if self.MEDIA_S3_CUSTOM_DOMAIN:
