@@ -323,3 +323,6 @@ class ProjectBaseConfig(Configuration):
 
     CORS_ALLOWED_ORIGINS = values.ListValue()
     SOCIALACCOUNT_STORE_TOKENS = True
+
+    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+    CRISPY_TEMPLATE_PACK = "bootstrap5"
