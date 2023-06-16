@@ -282,7 +282,7 @@ class ProjectBaseConfig(Configuration):
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_AUTHENTICATION_METHOD = 'email'
     ACCOUNT_UNIQUE_EMAIL = True
-    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+    ACCOUNT_EMAIL_VERIFICATION = 'none'  # "mandatory", "optional", or "none"
     ACCOUNT_FORMS = {'signup': 'usermodel.forms.MyCustomSignupForm'}
     ACCOUNT_MAX_EMAIL_ADDRESSES = 2
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
