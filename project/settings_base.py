@@ -254,7 +254,7 @@ class ProjectBaseConfig(Configuration):
             default = 'project.storages.PublicMediaStorage'
 
         if self.STATIC_MODE == 's3':
-            static = 'project.storages.StaticStorage'
+            static = 'project.storages.WhiteNoiseStaticFilesStorage'
         else:
             static = 'whitenoise.storage.CompressedStaticFilesStorage'
         return {
