@@ -15,7 +15,7 @@ class PublicMediaStorage(S3Boto3Storage):
     secret_key = settings.MEDIA_S3_SECRET_ACCESS_KEY
     bucket_name = settings.MEDIA_S3_BUCKET_NAME
     querystring_auth = False
-    custom_domain = settings.MEDIA_S3_CUSTOM_DOMAIN
+    custom_domain = settings.MEDIA_HOST
 
 
 class StaticStorage(S3Boto3Storage):
