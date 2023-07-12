@@ -31,3 +31,6 @@ pytz==2023.3
 requests==2.31.0
 sentry-sdk==1.24.0
 whitenoise==6.4.0
+django-smart-selects==1.6.0
+django-crispy-forms==2.0
+crispy-bootstrap5==0.7
