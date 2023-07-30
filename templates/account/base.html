@@ -1,0 +1,50 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head_title %}{% endblock %}</title>
+    <link href="{% static 'main/bs5/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'main/bs5/js/bootstrap.bundle.min.js' %}"></script>
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body class="font-sans-serif leading-normal tracking-normal">
+{% block body %}
+    <nav class="container">
+        {% if messages %}
+            <div>
+                <strong>{% trans "Messages:" %}</strong>
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
+
+            <ul class="nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'account_email' %}" class="nav-link" >{% trans "Change E-mail" %}</a></li>
+                    <li class="nav-item">
+                        <a href="{% url 'account_logout' %}" class="nav-link" >{% trans "Sign Out" %}</a></li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'account_login' %}" class="nav-link" >{% trans "Sign In" %}</a></li>
+                    <li class="nav-item">
+                        <a href="{% url 'account_signup' %}" class="nav-link" >{% trans "Sign Up" %}</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block extra_body %}
+{% endblock %}
+</body>
+</html>

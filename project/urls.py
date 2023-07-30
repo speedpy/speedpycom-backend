@@ -16,10 +16,12 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/logout/', LogoutView.as_view(), name='logout'),
+    # smart selects
+    path('chaining/', include('smart_selects.urls')),
     # API Schema:
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
-    path('', RedirectView.as_view(url='/api/schema/swagger-ui/', permanent=True)),
+    path('', RedirectView.as_view(url='/api/schema/swagger-ui/', permanent=False)),
 ]

@@ -254,7 +254,7 @@ class ProjectBaseConfig(Configuration):
             default = 'project.storages.PublicMediaStorage'
 
         if self.STATIC_MODE == 's3':
-            static = 'project.storages.StaticStorage'
+            static = 'project.storages.WhiteNoiseStaticFilesStorage'
         else:
             static = 'whitenoise.storage.CompressedStaticFilesStorage'
         return {
@@ -282,7 +282,7 @@ class ProjectBaseConfig(Configuration):
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_AUTHENTICATION_METHOD = 'email'
     ACCOUNT_UNIQUE_EMAIL = True
-    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+    ACCOUNT_EMAIL_VERIFICATION = 'none'  # "mandatory", "optional", or "none"
     ACCOUNT_FORMS = {'signup': 'usermodel.forms.MyCustomSignupForm'}
     ACCOUNT_MAX_EMAIL_ADDRESSES = 2
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
@@ -323,3 +323,6 @@ class ProjectBaseConfig(Configuration):
 
     CORS_ALLOWED_ORIGINS = values.ListValue()
     SOCIALACCOUNT_STORE_TOKENS = True
+
+    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+    CRISPY_TEMPLATE_PACK = "bootstrap5"
