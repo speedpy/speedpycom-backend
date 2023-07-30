@@ -2,7 +2,6 @@ import uuid
 
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.contrib.postgres.fields import CIEmailField
 from django.core.mail import send_mail
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -19,8 +18,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     Username and password are required. Other fields are optional.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email = CIEmailField(
-        _('Email Address'),
+    email = models.EmailField(db_collation="utf8_general_ci", db_index=True, max_length=255,
+        verbose_name=_('Email Address'),
         unique=True,
         error_messages={
             'unique': _("A user with that username already exists."),
