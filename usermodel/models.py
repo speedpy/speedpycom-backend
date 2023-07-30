@@ -18,7 +18,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     Username and password are required. Other fields are optional.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email = models.EmailField(db_collation="utf8_general_ci", db_index=True, max_length=255,
+    email = models.EmailField(
+        db_collation="und-x-icu", db_index=True, max_length=255,
         verbose_name=_('Email Address'),
         unique=True,
         error_messages={
